@@ -46,7 +46,7 @@ public class Main {
             try {
                 conn = dataSource.getConnection();
                 stmt = conn.createStatement();
-                String sql = "SELECT name, time, steps FROM run";
+                String sql = "SELECT name, time, steps FROM run ORDER BY time ASC";
                 ResultSet rs = stmt.executeQuery(sql);
                 while(rs.next()){
                     JSONObject obj = new JSONObject();
@@ -66,6 +66,7 @@ public class Main {
             }
             res.body(arr.toString());
             res.type("application/json");
+            System.out.println(res.body());
             return res.body();
         });
     }
